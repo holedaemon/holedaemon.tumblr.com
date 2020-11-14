@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{block:PostSummary}{PostSummary} &bull; {/block:PostSummary}{Title}</title>
+
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="{Favicon}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta property="og:title" content="{Title}">
+        <meta property="og:description" content="{MetaDescription}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{PortraitURL-128}">
+        <meta property="og:url" content="{BlogURL}">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@LieutenantBam">
+        <meta name="twitter:creator" content="@LieutenantBam">
+        <meta name="twitter:title" content="{Title}">
+        <meta name="twitter:description" content="{MetaDescription}">
+
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bulma-kai@1.3.0/dist/kai.css" rel="stylesheet">
+
+        <style>
+            #content-box {
+                overflow: auto;
+                height: 85vh;
+            }
+
+            .dorohedork-button {
+                background-color: hsl(141, 71, 48);
+            }
+
+            
+            blockquote {
+                border-left: 3px solid hsl(141, 71, 48);
+                padding: 4px 10px;
+                margin: 10px 0px 5px 25px;
+            }
+        </style>
+        
+        <script>
+            const subtitleFaces = [
+                "(✿◠‿◠)",
+                "(─‿‿─)",
+                "(＠＾◡＾)"
+            ];
+
+            function randomFace() {
+                return subtitleFaces[Math.floor(Math.random() * (subtitleFaces.length - 0) + 0)];
+            }
+
+            function addFaces() {
+                const posts = document.getElementById("content-box");
+                const faces = posts.querySelectorAll("p.face");
+
+                for (const face of faces) {
+                    const text = document.createTextNode(randomFace());
+                    face.append(text);
+                }
+            }
+
+            window.onload = () => {
+                addFaces();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="columns px-6 py-6">
+            <div class="column is-one-fifth">
+                <div class="columns is-multiline">
+                    <div class="column is-full">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-256x256">
+                                    <img src="{PortraitURL-128}">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <h1 class="title is-size-4 is-spaced">{Title}</h1>
+                                        <h2 class="subtitle is-size-6">{Description}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-full">
+                        <div class="box">
+                            <ul class="fa-ul">
+                                <li>
+                                    <span class="fa-li is-size-5">
+                                        <i class="fas fa-question"></i>
+                                    </span>
+                                    <a class="is-size-5" target="_blank" href="/about">ABOUT</a>
+                                </li>
+                                <li>
+                                    <span class="fa-li is-size-5">
+                                        <i class="fab fa-twitter"></i>
+                                    </span>
+                                    <a class="is-size-5" target="_blank" href="https://twitter.com/LieutenantBam">TWITTER</a>
+                                </li>
+                                <li>
+                                    <span class="fa-li is-size-5">
+                                        <i class="fas fa-bread-slice"></i>
+                                    </span>
+                                    <a class="is-size-5" target="_blank" href="https://max.hole.pictures">WEBSITE</a>
+                                </li>
+                                <li>
+                                    <span class="fa-li is-size-5">
+                                        <i class="fas fa-splotch"></i>
+                                    </span>
+                                    <a class="is-size-5" target="_blank" href="https://my.hole.pictures">BLOG</a>
+                                </li>
+                            </ul>
+                            {block:HomePage}
+                                {block:Pagination}
+                                    <hr class="has-background-black-bis">
+                                    <div class="container has-text-centered mb-5">
+                                        &bull; YOU ARE ON LEVEL &bull;
+                                        <br>
+                                        {CurrentPage}
+                                    </div>
+                                    <div class="field is-grouped is-grouped-centered">
+                                        {block:PreviousPage}
+                                            <p class="control">
+                                                <a class="button is-success" href="{PreviousPage}">
+                                                    NEWER
+                                                </a>
+                                            </p>
+                                        {/block:PreviousPage}
+
+                                        {block:NextPage}
+                                            <p class="control">
+                                                <a class="button is-success" href="{NextPage}">
+                                                    OLDER
+                                                </a>
+                                            </p>
+                                        {/block:NextPage}
+                                    </div>
+                                {/block:Pagination}
+                            {/block:HomePage}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content-box" class="column is-block">
+                {block:HomePage}
+                    {block:Posts}
+                        <div class="card mb-6">
+                            {block:RebloggedFrom}
+                                <header class="card-header">
+                                    <a href="{ReblogParentURL}">
+                                        <p class="card-header-title">
+                                            <span class="icon mr-3">
+                                                <i class="fas fa-redo"></i>
+                                            </span>
+                                            {ReblogParentName}
+                                        </p>
+                                    </a>
+                                </header>
+                            {/block:RebloggedFrom}
+
+                            <div class="card-content">
+                                {block:NotReblog}
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <figure class="image is-48x48">
+                                                <img src="{PortraitURL-48}">
+                                            </figure>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-size-6">{Name}</p>
+                                            <p class="subtitle is-size-6">Faggot Post</p>
+                                        </div> 
+                                    </div>
+                                    <hr class="has-background-black-bis">
+
+                                    {block:Text}
+                                        {block:Title}
+                                            <h2 class="title">
+                                                {Title}
+                                            </h2>
+                                        {/block:Title}
+                                        {Body}
+                                    {/block:Text}
+
+                                    {block:Photo}
+                                        {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
+
+                                        {block:Caption}
+                                            <p>{Caption}</p>
+                                        {/block:Caption}
+                                    {/block:Photo}
+
+                                    {block:Quote}
+                                        <blockquote>
+                                            {Quote}
+                                        </blockquote>
+
+                                        {block:Source}
+                                            &mdash; {Source}
+                                        {/block:Source}
+                                    {/block:Quote}
+
+                                    {block:Link}
+                                        <a href="{URL}" {Target}>
+                                            <div class="box">
+                                                <h1 class="title">{Name}</h1>
+                                                {block:Excerpt}
+                                                    <h2 class="subtitle">{Excerpt}</h2>
+                                                {/block:Excerpt}
+                                            </div>
+                                        </a>
+
+                                        {block:Description}
+                                            <p class="is-size-6 mt-3">{Description}</p>
+                                        {/block:Description}
+                                    {/block:Link}
+
+                                    {block:Chat}
+                                        {block:Title}
+                                            <h1 class="title mb-3">{Title}</h1>
+                                        {/block:Title}
+
+                                        <blockquote>
+                                            {block:Lines}
+                                                {block:Label}
+                                                    {Label}
+                                                {/block:Label} 
+
+                                                {Line}
+                                                <br>
+                                            {/block:Lines}
+                                        </blockquote>
+                                    {/block:Chat}
+
+                                    {block:Video}
+                                        {Video-700}
+
+                                        {block:Caption}
+                                            <figcaption>
+                                                {Caption}
+                                            </figcaption>
+                                        {/block:Caption}
+                                    {/block:Video}
+
+                                    {block:Answer}
+                                        <div class="card mb-3">
+                                            <div class="card-content">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <figure class="image is-48x48">
+                                                            <img src="{AskerPortraitURL-48}">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="media-content">
+                                                        <p class="title is-size-5">{Asker} asks...</p>
+                                                    </div>
+
+                                                    <blockquote>
+                                                        {Answer}
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {block:Answerer}
+                                            <div class="card mb-3">
+                                                <div class="card-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <figure class="image is-48x48">
+                                                                <img src="{AnswererPortraitURL-48}">
+                                                            </figure>
+                                                        </div>
+                                                        <div class="media-content">
+                                                            {Answerer}
+                                                        </div>
+
+                                                        <blockquote>
+                                                            {Answer}
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {/block:Answerer}
+                                    {/block:Answer}
+                                {/block:NotReblog}
+                                
+                                {block:RebloggedFrom}
+                                    {block:Reblogs}
+                                        <div class="mb-5">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <figure class="image is-48x48">
+                                                        {block:IsActive}
+                                                            <a href="{Permalink}">
+                                                                <img src="{PortraitURL-64}">
+                                                            </a>
+                                                        {/block:IsActive}
+
+                                                        {block:IsDeactivated}
+                                                            <img src="{PortraitURL-64}">
+                                                        {/block:IsDeactivated}
+                                                    </figure>
+                                                </div>
+                                                <div class="media-content">
+                                                    <p class="title is-size-6">{Username}</p>
+                                                    <p class="subtitle is-size-6 face"></p>
+                                                </div>
+                                            </div>
+
+                                            {block:Text}
+                                                {Body}
+                                            {/block:Text}
+
+                                            {block:Photo}
+                                                {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
+        
+                                                {block:Caption}
+                                                    <p>{Caption}</p>
+                                                {/block:Caption}
+                                            {/block:Photo}
+
+                                            {block:Quote}
+                                                <blockquote>
+                                                    {Quote}
+                                                </blockquote>
+
+                                                {block:Source}
+                                                    &mdash; {Source}
+                                                {/block:Source}
+                                            {/block:Quote}
+
+                                            {block:Link}
+                                                <a href="{URL}" {Target}>
+                                                    <div class="box">
+                                                        <h1 class="title">{Name}</h1>
+                                                        {block:Excerpt}
+                                                            <h2 class="subtitle">{Excerpt}</h2>
+                                                        {/block:Excerpt}
+                                                    </div>
+                                                </a>
+
+                                                {block:Description}
+                                                    <p class="is-size-6 mt-3">{Description}</p>
+                                                {/block:Description}
+                                            {/block:Link}
+
+                                            {block:Chat}
+                                                {block:Title}
+                                                    <h1 class="title mb-3">{Title}</h1>
+                                                {/block:Title}
+        
+                                                <blockquote>
+                                                    {block:Lines}
+                                                        {block:Label}
+                                                            {Label}
+                                                        {/block:Label} 
+        
+                                                        {Line}
+                                                        <br>
+                                                    {/block:Lines}
+                                                </blockquote>
+                                            {/block:Chat}
+
+                                            {block:Video}
+                                                {Video-700}
+
+                                                {block:Caption}
+                                                    <figcaption>
+                                                        {Caption}
+                                                    </figcaption>
+                                                {/block:Caption}
+                                            {/block:Video}
+                                            
+                                            {block:Answer}
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <figure class="image is-48x48">
+                                                            <img src="{AskerPortraitURL-48}">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="media-content">
+                                                        <p class="is-size-6">{Asker} says</p>
+                                                    </div>
+                                                </div>
+
+                                                <blockquote>
+                                                    {Question}
+                                                </blockquote>
+
+                                                {block:Answerer}
+                                                    <div class="media">
+                                                        <div class="media-content">
+                                                            {Answerer}:
+                                                            <br>
+                                                            <blockquote>
+                                                                {Answer}
+                                                            </blockquote>
+                                                        </div>
+                                                    </div>
+                                                {/block:Answerer}
+
+                                                {Replies}
+                                            {/block:Answer}
+                                        </div>
+                                    {/block:Reblogs}
+                                {/block:RebloggedFrom}
+                            </div>
+                        </div>
+                    {/block:Posts}
+                {/block:HomePage}
+            </div>
+        </div>
+    </body>
+</html>
