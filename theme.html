@@ -1,421 +1,471 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{block:PostSummary}{PostSummary} &bull; {/block:PostSummary}{Title}</title>
 
-        <meta charset="utf-8">
-        <link rel="shortcut icon" href="{Favicon}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>{block:PostSummary}{PostSummary} &bull; {/block:PostSummary}{Title}</title>
 
-        <meta property="og:title" content="{Title}">
-        <meta property="og:description" content="{MetaDescription}">
-        <meta property="og:type" content="website">
-        <meta property="og:image" content="{PortraitURL-128}">
-        <meta property="og:url" content="{BlogURL}">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{Favicon}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@LieutenantBam">
-        <meta name="twitter:creator" content="@LieutenantBam">
-        <meta name="twitter:title" content="{Title}">
-        <meta name="twitter:description" content="{MetaDescription}">
+    <meta property="og:title" content="{Title}">
+    <meta property="og:description" content="{MetaDescription}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{PortraitURL-128}">
+    <meta property="og:url" content="{BlogURL}">
 
-        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bulma-kai@1.3.0/dist/kai.css" rel="stylesheet">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@LieutenantBam">
+    <meta name="twitter:creator" content="@LieutenantBam">
+    <meta name="twitter:title" content="{Title}">
+    <meta name="twitter:description" content="{MetaDescription}">
 
-        <style>
-            #content-box {
-                overflow: auto;
-                height: 85vh;
+    <!-- CUSTOM SETTINGS -->
+    <meta name="text:Blog Name" content="Some Nerd">
+
+    <meta name="if:Do Sidebar" content="0">
+    
+    <meta name="text:Sidebar 1 Icon" content="">
+    <meta name="text:Sidebar 1 Name" content="">
+    <meta name="text:Sidebar 1 Link" content="">
+
+    <meta name="text:Sidebar 2 Icon" content="">
+    <meta name="text:Sidebar 2 Name" content="">
+    <meta name="text:Sidebar 2 Link" content="">
+
+    <meta name="text:Sidebar 3 Icon" content="">
+    <meta name="text:Sidebar 3 Name" content="">
+    <meta name="text:Sidebar 3 Link" content="">
+
+    <meta name="text:Sidebar 4 Icon" content="">
+    <meta name="text:Sidebar 4 Name" content="">
+    <meta name="text:Sidebar 4 Link" content="">
+
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bulma-kai@1.3.0/dist/kai.css" rel="stylesheet">
+
+    <style>
+        #content-box {
+            overflow: auto;
+            height: 85vh;
+        }
+
+        .dorohedork-card {
+            border: 2px #242424 solid;
+        }
+
+        .dorohedork-box {
+            border: 2px #242424 solid;
+        }
+
+        .dorohedork-no-link {
+            color: #f5f5f5;
+        }
+
+        .dorohedork-no-link:hover {
+            color: #f5f5f5;
+        }
+
+        .dorohedork-tag {
+            border: 2px #242424 solid;
+        }
+
+        blockquote {
+            border-left-style: solid;
+            border-left-width: 3px;
+            border-left-color: #23D160;
+            padding: 4px 10px;
+            margin: 10px 0px 0px 25px;
+        }
+
+        .content blockquote {
+            border-left-style: solid;
+            border-left-width: 3px;
+            border-left-color: #23D160;
+            padding: 4px 10px;
+            margin: 10px 0px 0px 25px;
+        }
+
+        .card-header {
+            border-bottom: 2px #242424 solid;
+        }
+    </style>
+
+    <script>
+        const subtitleFaces = [
+            "(✿◠‿◠)",
+            "(─‿‿─)",
+            "(＠＾◡＾)",
+            "ヽ(・∀・)ﾉ",
+            "(´･ᴗ･ ` )",
+            "(☆ω☆)",
+            "(๑˃ᴗ˂)ﻭ",
+            "(⌒ω⌒)",
+            "(⌒▽⌒)☆",
+            "(*￣▽￣)b",
+            "(.❛ ᴗ ❛.)"
+        ];
+
+        function randomFace() {
+            return subtitleFaces[Math.floor(Math.random() * (subtitleFaces.length - 0) + 0)];
+        }
+
+        function addFaces() {
+            const posts = document.getElementById("content-box");
+            const faces = posts.querySelectorAll("p.face");
+
+            for (const face of faces) {
+                const text = document.createTextNode(randomFace());
+                face.append(text);
             }
+        }
 
-            .dorohedork-button {
-                background-color: hsl(141, 71, 48);
-            }
+        window.onload = () => {
+            addFaces();
+        }
+    </script>
+</head>
 
-            
-            blockquote {
-                border-left: 3px solid hsl(141, 71, 48);
-                padding: 4px 10px;
-                margin: 10px 0px 5px 25px;
-            }
-        </style>
-        
-        <script>
-            const subtitleFaces = [
-                "(✿◠‿◠)",
-                "(─‿‿─)",
-                "(＠＾◡＾)"
-            ];
-
-            function randomFace() {
-                return subtitleFaces[Math.floor(Math.random() * (subtitleFaces.length - 0) + 0)];
-            }
-
-            function addFaces() {
-                const posts = document.getElementById("content-box");
-                const faces = posts.querySelectorAll("p.face");
-
-                for (const face of faces) {
-                    const text = document.createTextNode(randomFace());
-                    face.append(text);
-                }
-            }
-
-            window.onload = () => {
-                addFaces();
-            }
-        </script>
-    </head>
-    <body>
-        <div class="columns px-6 py-6">
-            <div class="column is-one-fifth">
-                <div class="columns is-multiline">
-                    <div class="column is-full">
-                        <div class="card">
-                            <div class="card-image">
-                                <figure class="image is-256x256">
+<body>
+    <div class="columns px-6 py-6">
+        <div class="column is-one-fifth">
+            <div class="columns is-multiline">
+                <div class="column is-full">
+                    <div class="card is-shadowless dorohedork-card">
+                        <div class="card-image">
+                            <figure class="image is-256x256">
+                                <a href="{BlogURL}">
                                     <img src="{PortraitURL-128}">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-content">
-                                        <h1 class="title is-size-4 is-spaced">{Title}</h1>
-                                        <h2 class="subtitle is-size-6">{Description}</h2>
-                                    </div>
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <h1 class="title is-size-4 is-spaced">{Title}</h1>
+                                    <h2 class="subtitle is-size-6">{Description}</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="column is-full">
-                        <div class="box">
+                <div class="column is-full">
+                    <div class="box is-shadowless dorohedork-box">
+                        {block:IfDoSidebar}
                             <ul class="fa-ul">
-                                <li>
-                                    <span class="fa-li is-size-5">
-                                        <i class="fas fa-question"></i>
-                                    </span>
-                                    <a class="is-size-5" target="_blank" href="/about">ABOUT</a>
-                                </li>
-                                <li>
-                                    <span class="fa-li is-size-5">
-                                        <i class="fab fa-twitter"></i>
-                                    </span>
-                                    <a class="is-size-5" target="_blank" href="https://twitter.com/LieutenantBam">TWITTER</a>
-                                </li>
-                                <li>
-                                    <span class="fa-li is-size-5">
-                                        <i class="fas fa-bread-slice"></i>
-                                    </span>
-                                    <a class="is-size-5" target="_blank" href="https://max.hole.pictures">WEBSITE</a>
-                                </li>
-                                <li>
-                                    <span class="fa-li is-size-5">
-                                        <i class="fas fa-splotch"></i>
-                                    </span>
-                                    <a class="is-size-5" target="_blank" href="https://my.hole.pictures">BLOG</a>
-                                </li>
+                                {block:IfSidebar1Name}
+                                    {block:IfSidebar1Link}
+                                        {block:IfSidebar1Icon}
+                                            <li>
+                                                <span class="fa-li is-size-5">
+                                                    <i class="{text:Sidebar 1 Icon}"></i>
+                                                </span>
+                                                <a class="is-size-5" target="_blank" href="{text:Sidebar 1 Link}">{text:Sidebar 1 Name}</a>
+                                            </li>
+                                        {/block:IfSidebar1Icon}
+                                    {/block:IfSidebar1Link}
+                                {/block:IfSidebar1Name}
+
+                                {block:IfSidebar2Name}
+                                    {block:IfSidebar2Link}
+                                        {block:IfSidebar2Icon}
+                                            <li>
+                                                <span class="fa-li is-size-5">
+                                                    <i class="{text:Sidebar 2 Icon}"></i>
+                                                </span>
+                                                <a class="is-size-5" target="_blank" href="{text:Sidebar 2 Link}">{text:Sidebar 2 Name}</a>
+                                            </li>
+                                        {/block:IfSidebar2Icon}
+                                    {/block:IfSidebar2Link}
+                                {/block:IfSidebar2Name}
+
+                                {block:IfSidebar3Name}
+                                    {block:IfSidebar3Link}
+                                        {block:IfSidebar3Icon}
+                                            <li>
+                                                <span class="fa-li is-size-5">
+                                                    <i class="{text:Sidebar 3 Icon}"></i>
+                                                </span>
+                                                <a class="is-size-5" target="_blank" href="{text:Sidebar 3 Link}">{text:Sidebar 3 Name}</a>
+                                            </li>
+                                        {/block:IfSidebar3Icon}
+                                    {/block:IfSidebar3Link}
+                                {/block:IfSidebar3Name}
+
+                                {block:IfSidebar4Name}
+                                    {block:IfSidebar4Link}
+                                        {block:IfSidebar4Icon}
+                                            <li>
+                                                <span class="fa-li is-size-5">
+                                                    <i class="{text:Sidebar 4 Icon}"></i>
+                                                </span>
+                                                <a class="is-size-5" target="_blank" href="{text:Sidebar 4 Link}">{text:Sidebar 4 Name}</a>
+                                            </li>
+                                        {/block:IfSidebar4Icon}
+                                    {/block:IfSidebar4Link}
+                                {/block:IfSidebar4Name}
                             </ul>
                             {block:HomePage}
-                                {block:Pagination}
-                                    <hr class="has-background-black-bis">
-                                    <div class="container has-text-centered mb-5">
-                                        &bull; YOU ARE ON LEVEL &bull;
-                                        <br>
-                                        {CurrentPage}
-                                    </div>
-                                    <div class="field is-grouped is-grouped-centered">
-                                        {block:PreviousPage}
-                                            <p class="control">
-                                                <a class="button is-success" href="{PreviousPage}">
-                                                    NEWER
-                                                </a>
-                                            </p>
-                                        {/block:PreviousPage}
-
-                                        {block:NextPage}
-                                            <p class="control">
-                                                <a class="button is-success" href="{NextPage}">
-                                                    OLDER
-                                                </a>
-                                            </p>
-                                        {/block:NextPage}
-                                    </div>
-                                {/block:Pagination}
+                                <hr class="has-background-black-ter">
                             {/block:HomePage}
-                        </div>
+                        {/block:IfDoSidebar}
+                        {block:HomePage}
+                            {block:Pagination}
+                                <div class="container has-text-centered mb-5">
+                                    &bull; YOU ARE ON LEVEL &bull;
+                                    <br>
+                                    {CurrentPage}
+                                </div>
+                                <div class="field is-grouped is-grouped-centered">
+                                    {block:PreviousPage}
+                                    <p class="control">
+                                        <a class="button is-success" href="{PreviousPage}">
+                                            NEWER
+                                        </a>
+                                    </p>
+                                    {/block:PreviousPage}
+
+                                    {block:NextPage}
+                                    <p class="control">
+                                        <a class="button is-success" href="{NextPage}">
+                                            OLDER
+                                        </a>
+                                    </p>
+                                    {/block:NextPage}
+                                </div>
+                            {/block:Pagination}
+                        {/block:HomePage}
                     </div>
                 </div>
             </div>
-            <div id="content-box" class="column is-block">
-                {block:HomePage}
-                    {block:Posts}
-                        <div class="card mb-6">
-                            {block:RebloggedFrom}
-                                <header class="card-header">
-                                    <a href="{ReblogParentURL}">
-                                        <p class="card-header-title">
-                                            <span class="icon mr-3">
-                                                <i class="fas fa-redo"></i>
-                                            </span>
-                                            {ReblogParentName}
-                                        </p>
-                                    </a>
-                                </header>
-                            {/block:RebloggedFrom}
+        </div>
+        <div id="content-box" class="column is-block">
+            {block:Posts}
+                <div class="card dorohedork-card mb-5">
+                    {block:RebloggedFrom}
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                <a class="dorohedork-no-link" href="{ReblogParentURL}">
+                                    <span class="icon mr-1">
+                                        <i class="fas fa-redo"></i>
+                                    </span>
+                                    {ReblogParentName}
+                                </a>
+                            </p>
+                        </header>
+                    {/block:RebloggedFrom}
 
-                            <div class="card-content">
-                                {block:NotReblog}
+                    <div class="card-content">
+                        {block:NotReblog}
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="{PortraitURL-48}">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-size-5">{text:Blog Name}</p>
+                                    <p class="subtitle is-size-6">&LT;------- clueless</p>
+                                </div>
+                            </div>
+                            <hr class="has-background-black-ter">
+                        {/block:NotReblog}
+
+                        {block:RebloggedFrom}
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="{ReblogRootURL}">
+                                        <figure class="image is-48x48">
+                                            <img src="{ReblogRootPortraitURL-48}">
+                                        </figure>
+                                    </a>
+                                </div>
+                                <div class="media-content">
+                                    <a class="title is-size-5" href="{ReblogRootURL}">{ReblogRootName}</a>
+                                    <p class="face"></p>
+                                </div>
+                            </div>
+                            <hr class="has-background-black-ter">
+                        {/block:RebloggedFrom}
+
+                        <div id="post-content">
+                            {block:Text}
+                                {block:Title}
+                                    <h1 class="title">{Title}</h1>
+                                {/block:Title}
+
+                                {Body}
+                            {/block:Text}
+
+                            {block:Photo}
+                                {LinkOpenTag}
+                                    <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}">
+                                {LinkCloseTag}
+
+                                {block:Caption}
+                                    <p>{Caption}</p>
+                                {/block:Caption}
+                            {/block:Photo}
+
+                            {block:Panorama}
+                                {LinkOpenTag}
+                                    <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
+                                {LinkCloseTag}
+
+                                {block:Caption}
+                                    <p>{Caption}</p>
+                                {/block:Caption}
+                            {/block:Panorama}
+
+                            {block:Photoset}
+                                {block:Photos}
+                                    {LinkOpenTag}
+                                        <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="{PhotoWidth-500}" height="{PhotoHeight-500}">
+                                    {LinkCloseTag}
+                                    <br>
+                                {/block:Photos}
+
+                                {block:Caption}
+                                    <p>{Caption}</p>
+                                {/block:Caption}
+                            {/block:Photoset}
+
+                            {block:Quote}
+                                <blockquote>
+                                    {Quote}
+                                </blockquote>
+                                {block:Source}
+                                    <footer>
+                                        &mdash; {Source}
+                                    </footer>
+                                {/block:Source}
+                            {/block:Quote}
+
+                            {block:Link}
+                                <a href="{URL}" {Target}>
+                                    <div class="box is-shadowless dorohedork-box">
+                                        <h1 class="title">{Name}</h1>
+                                        {block:Excerpt}
+                                            <h2 class="subtitle">{Excerpt}</h2>
+                                        {/block:Excerpt}
+                                        {block:Host}
+                                            <small>
+                                                {Host}
+                                            </small>
+                                        {/block:Host}
+                                    </div>
+                                </a>
+                            {/block:Link}
+
+                            {block:Chat}
+                                {block:Title}
+                                    <h1 class="title">{Title}</h1>
+                                {/block:Title}
+
+                                {block:Lines}
+                                    <blockquote>
+                                        {block:Label}
+                                            {Label}
+                                        {/block:Label}
+
+                                        {Line}
+                                        <br>
+                                    </blockquote>
+                                {/block:Lines}
+                            {/block:Chat}
+
+                            {block:Video}
+                                {Video-700}
+
+                                {block:Caption}
+                                    {Caption}
+                                {/block:Caption}
+                            {/block:Video}
+
+                            {block:Answer}
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img src="{AskerPortraitURL-48}">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        {Asker}
+                                        <p class="is-size-6">{Question}</p>
+                                    </div>
+                                </div>
+
+                                {block:Answerer}
                                     <div class="media">
                                         <div class="media-left">
                                             <figure class="image is-48x48">
-                                                <img src="{PortraitURL-48}">
+                                                <img src="{AnswererPortraitURL-48}">
                                             </figure>
                                         </div>
                                         <div class="media-content">
-                                            <p class="title is-size-6">{Name}</p>
-                                            <p class="subtitle is-size-6">Faggot Post</p>
-                                        </div> 
-                                    </div>
-                                    <hr class="has-background-black-bis">
+                                            {Answerer}
+                                            <p class="is-size-6">{Answer}</p>
+                                        </div>
+                                {/block:Answerer}
+                                </div>
+                            {/block:Answer}
 
-                                    {block:Text}
-                                        {block:Title}
-                                            <h2 class="title">
-                                                {Title}
-                                            </h2>
-                                        {/block:Title}
-                                        {Body}
-                                    {/block:Text}
+                            <hr class="has-background-black-ter">
 
-                                    {block:Photo}
-                                        {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
-
-                                        {block:Caption}
-                                            <p>{Caption}</p>
-                                        {/block:Caption}
-                                    {/block:Photo}
-
-                                    {block:Quote}
-                                        <blockquote>
-                                            {Quote}
-                                        </blockquote>
-
-                                        {block:Source}
-                                            &mdash; {Source}
-                                        {/block:Source}
-                                    {/block:Quote}
-
-                                    {block:Link}
-                                        <a href="{URL}" {Target}>
-                                            <div class="box">
-                                                <h1 class="title">{Name}</h1>
-                                                {block:Excerpt}
-                                                    <h2 class="subtitle">{Excerpt}</h2>
-                                                {/block:Excerpt}
-                                            </div>
+                            {block:HasTags}
+                                <div class="tags are-medium mb-1">
+                                    {block:Tags}
+                                        <a href="{TagURLChrono}" target="_blank">
+                                            <span class="tag dorohedork-tag mr-2">
+                                                #{Tag}
+                                            </span>
                                         </a>
-
-                                        {block:Description}
-                                            <p class="is-size-6 mt-3">{Description}</p>
-                                        {/block:Description}
-                                    {/block:Link}
-
-                                    {block:Chat}
-                                        {block:Title}
-                                            <h1 class="title mb-3">{Title}</h1>
-                                        {/block:Title}
-
-                                        <blockquote>
-                                            {block:Lines}
-                                                {block:Label}
-                                                    {Label}
-                                                {/block:Label} 
-
-                                                {Line}
-                                                <br>
-                                            {/block:Lines}
-                                        </blockquote>
-                                    {/block:Chat}
-
-                                    {block:Video}
-                                        {Video-700}
-
-                                        {block:Caption}
-                                            <figcaption>
-                                                {Caption}
-                                            </figcaption>
-                                        {/block:Caption}
-                                    {/block:Video}
-
-                                    {block:Answer}
-                                        <div class="card mb-3">
-                                            <div class="card-content">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <figure class="image is-48x48">
-                                                            <img src="{AskerPortraitURL-48}">
-                                                        </figure>
-                                                    </div>
-                                                    <div class="media-content">
-                                                        <p class="title is-size-5">{Asker} asks...</p>
-                                                    </div>
-
-                                                    <blockquote>
-                                                        {Answer}
-                                                    </blockquote>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {block:Answerer}
-                                            <div class="card mb-3">
-                                                <div class="card-content">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <figure class="image is-48x48">
-                                                                <img src="{AnswererPortraitURL-48}">
-                                                            </figure>
-                                                        </div>
-                                                        <div class="media-content">
-                                                            {Answerer}
-                                                        </div>
-
-                                                        <blockquote>
-                                                            {Answer}
-                                                        </blockquote>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {/block:Answerer}
-                                    {/block:Answer}
-                                {/block:NotReblog}
-                                
-                                {block:RebloggedFrom}
-                                    {block:Reblogs}
-                                        <div class="mb-5">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <figure class="image is-48x48">
-                                                        {block:IsActive}
-                                                            <a href="{Permalink}">
-                                                                <img src="{PortraitURL-64}">
-                                                            </a>
-                                                        {/block:IsActive}
-
-                                                        {block:IsDeactivated}
-                                                            <img src="{PortraitURL-64}">
-                                                        {/block:IsDeactivated}
-                                                    </figure>
-                                                </div>
-                                                <div class="media-content">
-                                                    <p class="title is-size-6">{Username}</p>
-                                                    <p class="subtitle is-size-6 face"></p>
-                                                </div>
-                                            </div>
-
-                                            {block:Text}
-                                                {Body}
-                                            {/block:Text}
-
-                                            {block:Photo}
-                                                {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">{LinkCloseTag}
-        
-                                                {block:Caption}
-                                                    <p>{Caption}</p>
-                                                {/block:Caption}
-                                            {/block:Photo}
-
-                                            {block:Quote}
-                                                <blockquote>
-                                                    {Quote}
-                                                </blockquote>
-
-                                                {block:Source}
-                                                    &mdash; {Source}
-                                                {/block:Source}
-                                            {/block:Quote}
-
-                                            {block:Link}
-                                                <a href="{URL}" {Target}>
-                                                    <div class="box">
-                                                        <h1 class="title">{Name}</h1>
-                                                        {block:Excerpt}
-                                                            <h2 class="subtitle">{Excerpt}</h2>
-                                                        {/block:Excerpt}
-                                                    </div>
-                                                </a>
-
-                                                {block:Description}
-                                                    <p class="is-size-6 mt-3">{Description}</p>
-                                                {/block:Description}
-                                            {/block:Link}
-
-                                            {block:Chat}
-                                                {block:Title}
-                                                    <h1 class="title mb-3">{Title}</h1>
-                                                {/block:Title}
-        
-                                                <blockquote>
-                                                    {block:Lines}
-                                                        {block:Label}
-                                                            {Label}
-                                                        {/block:Label} 
-        
-                                                        {Line}
-                                                        <br>
-                                                    {/block:Lines}
-                                                </blockquote>
-                                            {/block:Chat}
-
-                                            {block:Video}
-                                                {Video-700}
-
-                                                {block:Caption}
-                                                    <figcaption>
-                                                        {Caption}
-                                                    </figcaption>
-                                                {/block:Caption}
-                                            {/block:Video}
-                                            
-                                            {block:Answer}
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <figure class="image is-48x48">
-                                                            <img src="{AskerPortraitURL-48}">
-                                                        </figure>
-                                                    </div>
-                                                    <div class="media-content">
-                                                        <p class="is-size-6">{Asker} says</p>
-                                                    </div>
-                                                </div>
-
-                                                <blockquote>
-                                                    {Question}
-                                                </blockquote>
-
-                                                {block:Answerer}
-                                                    <div class="media">
-                                                        <div class="media-content">
-                                                            {Answerer}:
-                                                            <br>
-                                                            <blockquote>
-                                                                {Answer}
-                                                            </blockquote>
-                                                        </div>
-                                                    </div>
-                                                {/block:Answerer}
-
-                                                {Replies}
-                                            {/block:Answer}
-                                        </div>
-                                    {/block:Reblogs}
-                                {/block:RebloggedFrom}
-                            </div>
+                                    {/block:Tags}
+                                </div>
+                            {/block:HasTags}
                         </div>
-                    {/block:Posts}
-                {/block:HomePage}
-            </div>
+
+                        <nav class="level">
+                            <div class="level-left">
+                                {block:Date}
+                                    <div class="level-item">
+                                        <a href="{Permalink}">
+                                            {DayOfWeek}, {Month} {DayOfMonth}, {Year}
+                                        </a>
+                                    </div>
+                                {/block:Date}
+                                {block:HomePage}
+                                    {block:NoteCount}
+                                        <div class="level-item">
+                                            <a href="{Permalink}">
+                                                {NoteCountWithLabel}
+                                            </a>
+                                        </div>
+                                    {/block:NoteCount}
+                                {/block:HomePage}
+                            </div>
+                            <div class="level-right">
+                                <div class="level-item">
+                                    {ReblogButton color="white"}
+                                </div>
+                                <div class="level-item">
+                                    {LikeButton color="white"}
+                                </div>
+                            </div>
+                        </nav>
+                        {block:PermalinkPage}
+                            {block:PostNotes}
+                                <hr class="has-background-black-ter">
+                                <div class="mx-5">
+                                    {PostNotes-16}
+                                </div>
+                            {/block:PostNotes}
+                        {/block:PermalinkPage}
+                    </div>
+                </div>
+            {/block:Posts}
         </div>
-    </body>
+    </div>
+</body>
 </html>
