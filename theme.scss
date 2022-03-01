@@ -1,0 +1,76 @@
+@use "sass:color";
+
+$background-color: #272b24;
+$background-darker: #1e211c;
+$text-color: #e4ebdf;
+$text-alt: #fd6d6d;
+$text-alt-darker: color.scale($text-alt, $blackness: 20%);
+
+body {
+    margin: 0px;
+    display: grid;
+
+    width: 100vw;
+    height: 100vh;
+
+    grid-template-columns: 1fr 85vw;
+    grid-template-rows: 85%;
+
+    color: $text-color;
+    background-color: $background-color;
+}
+
+a {
+    color: $text-alt;
+
+    &:visited {
+        color: $text-alt;
+    }
+
+    &:hover {
+        color: $text-alt-darker;
+    }
+}
+
+#content {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+
+    overflow-y: scroll;
+    height: 100%;
+    margin-right: 10px;
+}
+
+#sidebar {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#sidebar-portrait {
+    border-radius: 50%;
+}
+
+#sidebar-bio {
+    text-align: center;
+}
+
+#sidebar-title {
+    font-size: large;
+    font-family: 'Georgia';
+}
+
+#sidebar-bio-list {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+
+    li::marker {
+        content: '\26E7  ';
+    }
+}
