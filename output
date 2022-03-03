@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+def main():
+    REPLACE = "<!-- CSS -->"
+    data = ""
+
+    print("writing css to theme")
+
+    with (
+        open("theme.html") as html,
+        open("theme.css", encoding="utf-8") as css,
+    ):
+        for line in html:
+            if REPLACE in line:
+                line = "\t\t<style>\n\t"+line.replace(REPLACE, css.read())+"\n</style>"
+            
+            data += line
+    
+    with open("output.html", mode="w") as output:
+        output.write(data)
+
+if __name__ == "__main__":
+    main()

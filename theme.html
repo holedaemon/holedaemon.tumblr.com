@@ -8,47 +8,13 @@
     </head>
     <body>
         <aside id="sidebar">
-            <img id="sidebar-portrait" src="{PortraitURL-128}">
-            <div id="sidebar-bio">
-                <p id="sidebar-title">{Title}</p>
-                {block:Description}
-                    <hr>
-                    <p id="sidebar-description">{Description}</p>
-                {/block:Description}
-                <ul id="sidebar-bio-list">
-                    <li>
-                        <a href="https://holedaemon.tumblr.com">MAIN BLOG</a>
-                    </li>
-                </ul>
-            </div>
         </aside>
         <main id="content">
-            {block:Posts inlineMediaWidth="250" inlineNestedMediaWidth="250"}
+            {block:Posts}
                 <article class="post">
-                    <header>
 
-                    </header>
-
-                    <div class="post-content">
-                        {block:Text}
-                            {block:Title}
-                                <h1>{Title}</h1>
-                            {/block:Title}
-
-                            {Body}
-                        {/block:Text}
-
-                        {block:Link}
-                            {block:Thumbnail}
-                                <a {Target} href="{URL}">
-                                    <img src="{Thumbnail-HighRes}">
-                                </a>
-                            {/block:Thumbnail}
-                            
-                        {/block:Link}
-                    </div>
                 </article>
             {/block:Posts}
         </main>
     </body>
-</html>
+ 
