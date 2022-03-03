@@ -8,7 +8,7 @@ def main():
 
     with (
         open("theme.html") as html,
-        open("theme.css", encoding="utf-8") as css,
+        open("theme.css", encoding="utf-8-sig") as css,
     ):
         for line in html:
             if REPLACE in line:

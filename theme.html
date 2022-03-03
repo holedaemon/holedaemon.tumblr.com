@@ -6,15 +6,172 @@
 
         <!-- CSS -->
     </head>
-    <body>
+    <body class="body-index-page">
         <aside id="sidebar">
+            <img src="{PortraitURL-128}">
+            <h3>{Title}</h3>
+            {Description}
+
+            {block:HasPages}
+                <ul id="sidebar-list">
+                    {block:Pages}
+                        <li><a href="{URL}">{Label}</a></li>
+                    {/block:Pages}
+                </ul>
+            {/block:HasPages}
         </aside>
         <main id="content">
-            {block:Posts}
+            {block:Posts inlineMediaWidth="250" inlineNestedMediaWidth="250"}
                 <article class="post">
+                    <header class="post-header">
+                        {block:NotReblog}
+                            <img src="{PortraitURL-64}"> <p class="header-name">Max</p>
+                        {/block:NotReblog}
 
+                        {block:RebloggedFrom}
+                            <img src="{ReblogParentPortraitURL-64}"> <a class="header-name" href="{ReblogParentURL}">{ReblogParentName}</a>
+                        {/block:RebloggedFrom}
+
+                        {block:PinnedPostLabel}
+                            {PinnedPostLabel}
+                        {/block:PinnedPostLabel}
+
+                        {block:Date}
+                            <time class="header-date">{ShortDayOfWeek}, {ShortMonth} {DayOfMonth}{DayOfMonthSuffix} {Year}, {12Hour}:{Minutes} {CapitalAmPm}</time>
+                        {/block:Date}
+                    </header>
+
+                    {block:Text}
+                        {block:Title}
+                            <h1 class="text-post-title">
+                                {Title}
+                            </h1>
+                        {/block:Title}
+
+                        {Body}
+                    {/block:Text}
+
+                    {block:Photo}
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-250}" alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}    
+                    {/block:Photo}
+
+                    {block:Panorama}
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Panorama}
+
+                    {block:Photoset}
+                        {block:Photos}
+                            <img src="{PhotoURL-250}" width="{PhotoWidth-250}" height="{PhotoHeight-250}">
+
+                            {block:Caption}
+                                <figcaption>{Caption}</figcaption>
+                            {/block:Caption}
+                        {/block:Photos}
+                    {/block:Photoset}
+
+                    {block:Quote}
+                        <blockquote>
+                            {Quote}
+                        </blockquote>
+
+                        {block:Source}
+                            {Source}
+                        {/block:Source}
+                    {/block:Quote}
+
+                    {block:Link}
+                        <h1>{Name}{block:Host} &bull; {Host}{/block:Host}</h1>
+
+                        {block:Description}
+                            <p>{Description}</p>
+                        {/block:Description}
+
+                        {block:Thumbnail}
+                            <img src="{Thumbnail}">
+                        {/block:Thumbnail}
+                        
+                    {/block:Link}
+
+                    {block:Chat}
+                        {block:Title}
+                            <h1>{Title}</h1>
+                        {/block:Title}
+
+                        {block:Lines}
+                            <p>{Name}: {Line}</p>
+                        {/block:Lines}
+                    {/block:Chat}
+
+                    {block:Audio}
+                        {block:AudioEmbed}
+                            {AudioEmbed-250}
+                        {/block:AudioEmbed}
+
+                        {block:AudioPlayer}
+                            {AudioPlayer}
+                        {/block:AudioPlayer}
+
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Audio}
+
+                    {block:Video}
+                        {Video-250}
+
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Video}
+
+                    {block:Answer}
+                        <div class="question">
+                            <div class="asker">
+                                <img src="{AskerPortraitURL-40}">
+                                <p>{Asker}</p>
+                            </div>
+                            {Question}
+                        </div>
+              
+                        {block:Answerer}
+                            <div class="answer">
+                                <div class="answerer">
+                                    <img src="{AnswererPortraitURL-40}">
+                                    <p>{Answerer}</p>
+                                </div>
+                                {Answer}
+                            </div>
+                        {/block:Answerer}
+                
+                        <div class="replies">
+                            {Replies}
+                        </div>
+                    {/block:Answer}
+
+                    {block:HasTags}
+                        <div class="tags">
+                            {block:Tags}
+                                <a class="tag" href="{TagURL}">#{Tag}</a>
+                            {/block:Tags}
+                        </div>
+                    {/block:HasTags}
                 </article>
             {/block:Posts}
         </main>
+        <footer id="footer">
+            {block:Pagination}
+                {block:PreviousPage}<a class="button" href="{PreviousPage}">&larr;</a>{/block:PreviousPage} {CurrentPage} {block:NextPage}<a class="button" href="{NextPage}">&rarr;</a>
+            {/block:Pagination}
+        </footer>
     </body>
  

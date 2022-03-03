@@ -1,4 +1,5 @@
 @charset "utf-8";
+@use "sass:color";
 
 /*
     --background-color: #272b24;
@@ -9,5 +10,8 @@
 
 $background-color: #272b24;
 $background-darker: #1e211c;
+$background-lighter: #4c5248;
+$background-light: color.scale($background-lighter, $blackness: 10%);
 $text-color: #e4ebdf;
 $text-highlight: #fd6d6d;
+$text-highlight-dark: color.scale($text-highlight, $blackness: 20%);

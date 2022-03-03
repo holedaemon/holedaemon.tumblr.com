@@ -7,6 +7,14 @@ body {
     color: $text-color;
 }
 
+a, :visited {
+    color: $text-highlight;
+}
+
+a:hover {
+    color: $text-highlight-dark;
+}
+
 @media (min-width: 1024px) {
     @import "desktop.scss";
 }

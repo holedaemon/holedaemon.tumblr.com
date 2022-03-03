@@ -5,19 +5,176 @@
         <title>{Title}</title>
 
 		<style>
-	        body{background-color:#272b24;color:#e4ebdf}@media(min-width: 1024px){.body-index-page{display:grid;margin:0;width:100vw;height:100vh;column-gap:50px;grid-template-rows:auto;grid-template-columns:.7fr 250px 600px 1fr}#sidebar{grid-row:1/2;grid-column:2/3}#content{grid-row:1/2;grid-column:3/4}}
+	        body{background-color:#272b24;color:#e4ebdf}a,:visited{color:#fd6d6d}a:hover{color:#ca6d6d}@media(min-width: 1024px){.body-index-page{display:grid;margin:0;height:100vh;column-gap:50px;grid-template-rows:1fr 13%;grid-template-columns:.7fr 250px 800px 1fr}#sidebar{grid-row:1/2;grid-column:2/3;align-self:center;background-color:#1e211c;border-radius:5px;height:350px;display:flex;flex-direction:column;align-items:center;justify-content:center;row-gap:5px;text-align:center}#sidebar-list{margin-top:10px;text-align:left;padding:0}#sidebar-list li::marker{content:"⛧ "}#content{grid-row:1/2;grid-column:3/4;height:85vh;align-self:center;overflow:auto}#content blockquote{border-left:2px solid #fd6d6d;padding-left:5px;margin-left:5px}#footer{grid-row:2/3;grid-column:3/4;margin-top:1rem;display:flex;flex-direction:row;align-items:baseline;justify-content:end;gap:5px}.self-post{background-color:#4c5248 !important}.post{background-color:#1e211c;padding:5px;margin:5px;border-radius:2px;overflow-wrap:break-word}.post-header{border-top-left-radius:5px;border-top-right-radius:5px;margin-bottom:5px;display:flex;flex-wrap:wrap;flex-direction:row;align-items:center;justify-content:start;gap:15px;border-bottom:1px solid #4c5248}.post-header img{margin-bottom:5px}.header-date{margin-left:auto}.header-name{font-size:20px}.button{height:25px;color:#e4ebdf;background-color:#1e211c;border-radius:5px;border-width:5px;border-color:#e4ebdf;text-decoration:none;display:flex;align-items:center;justify-content:center;padding:5px}.asker{display:flex;flex-direction:row;align-items:start;justify-content:baseline}.asker p{margin-left:5px}.answerer{display:flex;flex-direction:row;align-items:start;justify-content:baseline}.answerer p{margin-left:5px}.tags{display:flex;flex-direction:row;flex-wrap:wrap;gap:5px}.tag{padding:3px;border-radius:5px;text-decoration:none;color:#e4ebdf;border:1px solid #272b24;background-color:#4c5248}.tag:hover{background-color:#494a48}}
 
 		</style>
     </head>
-    <body>
+    <body class="body-index-page">
         <aside id="sidebar">
+            <img src="{PortraitURL-128}">
+            <h3>{Title}</h3>
+            {Description}
+
+            {block:HasPages}
+                <ul id="sidebar-list">
+                    {block:Pages}
+                        <li><a href="{URL}">{Label}</a></li>
+                    {/block:Pages}
+                </ul>
+            {/block:HasPages}
         </aside>
         <main id="content">
-            {block:Posts}
+            {block:Posts inlineMediaWidth="250" inlineNestedMediaWidth="250"}
                 <article class="post">
+                    <header class="post-header">
+                        {block:NotReblog}
+                            <img src="{PortraitURL-64}"> <p class="header-name">Max</p>
+                        {/block:NotReblog}
 
+                        {block:RebloggedFrom}
+                            <img src="{ReblogParentPortraitURL-64}"> <a class="header-name" href="{ReblogParentURL}">{ReblogParentName}</a>
+                        {/block:RebloggedFrom}
+
+                        {block:PinnedPostLabel}
+                            {PinnedPostLabel}
+                        {/block:PinnedPostLabel}
+
+                        {block:Date}
+                            <time class="header-date">{ShortDayOfWeek}, {ShortMonth} {DayOfMonth}{DayOfMonthSuffix} {Year}, {12Hour}:{Minutes} {CapitalAmPm}</time>
+                        {/block:Date}
+                    </header>
+
+                    {block:Text}
+                        {block:Title}
+                            <h1 class="text-post-title">
+                                {Title}
+                            </h1>
+                        {/block:Title}
+
+                        {Body}
+                    {/block:Text}
+
+                    {block:Photo}
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-250}" alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}    
+                    {/block:Photo}
+
+                    {block:Panorama}
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}">
+                        {LinkCloseTag}
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Panorama}
+
+                    {block:Photoset}
+                        {block:Photos}
+                            <img src="{PhotoURL-250}" width="{PhotoWidth-250}" height="{PhotoHeight-250}">
+
+                            {block:Caption}
+                                <figcaption>{Caption}</figcaption>
+                            {/block:Caption}
+                        {/block:Photos}
+                    {/block:Photoset}
+
+                    {block:Quote}
+                        <blockquote>
+                            {Quote}
+                        </blockquote>
+
+                        {block:Source}
+                            {Source}
+                        {/block:Source}
+                    {/block:Quote}
+
+                    {block:Link}
+                        <h1>{Name}{block:Host} &bull; {Host}{/block:Host}</h1>
+
+                        {block:Description}
+                            <p>{Description}</p>
+                        {/block:Description}
+
+                        {block:Thumbnail}
+                            <img src="{Thumbnail}">
+                        {/block:Thumbnail}
+                        
+                    {/block:Link}
+
+                    {block:Chat}
+                        {block:Title}
+                            <h1>{Title}</h1>
+                        {/block:Title}
+
+                        {block:Lines}
+                            <p>{Name}: {Line}</p>
+                        {/block:Lines}
+                    {/block:Chat}
+
+                    {block:Audio}
+                        {block:AudioEmbed}
+                            {AudioEmbed-250}
+                        {/block:AudioEmbed}
+
+                        {block:AudioPlayer}
+                            {AudioPlayer}
+                        {/block:AudioPlayer}
+
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Audio}
+
+                    {block:Video}
+                        {Video-250}
+
+                        {block:Caption}
+                            <figcaption>{Caption}</figcaption>
+                        {/block:Caption}
+                    {/block:Video}
+
+                    {block:Answer}
+                        <div class="question">
+                            <div class="asker">
+                                <img src="{AskerPortraitURL-40}">
+                                <p>{Asker}</p>
+                            </div>
+                            {Question}
+                        </div>
+              
+                        {block:Answerer}
+                            <div class="answer">
+                                <div class="answerer">
+                                    <img src="{AnswererPortraitURL-40}">
+                                    <p>{Answerer}</p>
+                                </div>
+                                {Answer}
+                            </div>
+                        {/block:Answerer}
+                
+                        <div class="replies">
+                            {Replies}
+                        </div>
+                    {/block:Answer}
+
+                    {block:HasTags}
+                        <div class="tags">
+                            {block:Tags}
+                                <a class="tag" href="{TagURL}">#{Tag}</a>
+                            {/block:Tags}
+                        </div>
+                    {/block:HasTags}
                 </article>
             {/block:Posts}
         </main>
+        <footer id="footer">
+            {block:Pagination}
+                {block:PreviousPage}<a class="button" href="{PreviousPage}">&larr;</a>{/block:PreviousPage} {CurrentPage} {block:NextPage}<a class="button" href="{NextPage}">&rarr;</a>
+            {/block:Pagination}
+        </footer>
     </body>
  
