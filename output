@@ -12,7 +12,7 @@ def main():
     ):
         for line in html:
             if REPLACE in line:
-                line = "\t\t<style>\n\t"+line.replace(REPLACE, css.read())+"\n</style>"
+                line = "\t\t<style>\n\t"+line.replace(REPLACE, css.read())+"\t\t</style>\n"
             
             data += line
     
