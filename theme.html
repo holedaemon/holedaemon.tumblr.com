@@ -107,16 +107,17 @@
                     {/block:Quote}
 
                     {block:Link}
-                        <h1>{Name}{block:Host} &bull; {Host}{/block:Host}</h1>
-
-                        {block:Description}
-                            <p>{Description}</p>
-                        {/block:Description}
-
-                        {block:Thumbnail}
-                            <img src="{Thumbnail}">
-                        {/block:Thumbnail}
-                        
+                        <div class="link">
+                            <a {Target} href="{URL}">
+                                <h1>{Name}</h1>
+                                {block:Thumbnail}
+                                    <img src="{Thumbnail}">
+                                {/block:Thumbnail}
+                                {block:Description}
+                                    {Description}
+                                {/block:Description}
+                            </a>
+                        </div>
                     {/block:Link}
 
                     {block:Chat}
@@ -168,11 +169,7 @@
                                 </div>
                                 {Answer}
                             </div>
-                        {/block:Answerer}
-                
-                        <div class="replies">
-                            {Replies}
-                        </div>
+                        {/block:Answerer}                       
                     {/block:Answer}
 
                     <div class="note-button-container">
@@ -185,8 +182,6 @@
                             {ReblogButton color="white"}
                         </div>
                     </div>
-
-                   
 
                     {block:HasTags}
                         <div class="tags">
