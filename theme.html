@@ -6,9 +6,11 @@
 
         <!-- CSS -->
     </head>
-    <body class="body-index-page">
+    <body>
         <aside id="sidebar">
-            <img src="{PortraitURL-128}">
+            <a href="{BlogURL}">
+                <img src="{PortraitURL-128}">
+            </a>
             <h3>{Title}</h3>
             {Description}
 
@@ -158,9 +160,18 @@
                         </div>
                     {/block:Answer}
 
-                    {block:NoteCount}
-                        <a href="{Permalink}">{NoteCountWithLabel}</a>
-                    {/block:NoteCount}
+                    <div class="note-button-container">
+                        {block:NoteCount}
+                            <a href="{Permalink}">{NoteCountWithLabel}</a>
+                        {/block:NoteCount}
+
+                        <div class="buttons">
+                            {LikeButton color="white"}
+                            {ReblogButton color="white"}
+                        </div>
+                    </div>
+
+                   
 
                     {block:HasTags}
                         <div class="tags">

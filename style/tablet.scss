@@ -3,12 +3,11 @@
 body {
     display: grid;
     margin: 0;
-    height: 100vh;
-    
+    height: 100%;
     column-gap: 50px;
-    
+
     grid-template-rows: 1fr 13%;
-    grid-template-columns: .7fr 250px 800px 1fr;
+    grid-template-columns: .7fr 250px 500px 1fr;
 }
 
 #sidebar {
@@ -195,4 +194,3 @@ body {
         margin-right: 5px;
     }
 }
-

@@ -18,3 +18,7 @@ a:hover {
 @media (min-width: 1024px) {
     @import "desktop.scss";
 }
+
+@media (max-width: 1023px) {
+    @import "tablet.scss";
+}
