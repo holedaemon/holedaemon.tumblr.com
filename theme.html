@@ -37,7 +37,7 @@
                         {/block:PinnedPostLabel}
 
                         {block:Date}
-                            <time class="header-date">{ShortDayOfWeek}, {ShortMonth} {DayOfMonth}{DayOfMonthSuffix} {Year}, {12Hour}:{Minutes} {CapitalAmPm}</time>
+                            <a class="header-permalink" href="{Permalink}"><time>{MonthNumberWithZero}/{DayOfMonthWithZero}/{ShortYear} {12Hour}:{Minutes}:{Seconds} {CapitalAmPm}</time></a>
                         {/block:Date}
                     </header>
 
@@ -158,6 +158,10 @@
                         </div>
                     {/block:Answer}
 
+                    {block:NoteCount}
+                        <a href="{Permalink}">{NoteCountWithLabel}</a>
+                    {/block:NoteCount}
+
                     {block:HasTags}
                         <div class="tags">
                             {block:Tags}
@@ -165,6 +169,12 @@
                             {/block:Tags}
                         </div>
                     {/block:HasTags}
+
+                    {block:PermalinkPage}
+                        {block:PostNotes}
+                            {PostNotes-16}
+                        {/block:PostNotes}
+                    {/block:PermalinkPage}
                 </article>
             {/block:Posts}
         </main>
